@@ -1153,20 +1153,24 @@
     }
 
     function goToResult() {
-        if (myZodiac && partnerZodiac) {
-            window.location.href = `posts/${myZodiac}-${partnerZodiac}-${selectedGender}.html`;
-        }
+    if (myZodiac && partnerZodiac && selectedGender) {
+        // 절대 경로로 이동
+        window.location.href = `/posts/${myZodiac}-${partnerZodiac}-${selectedGender}.html`;
+    } else if (!myZodiac) {
+        alert('내 띠를 선택해주세요!');
+    } else if (!partnerZodiac) {
+        alert('상대방 띠를 선택해주세요!');
     }
+}
 
-    // 링크 복사
-    function copyLink() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            const toast = document.getElementById('copy-toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        });
-    }
-
+// 링크 복사
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    });
+}
     // 모달 로직
     function openModal() { document.getElementById('zodiacModal').style.display = 'flex'; }
     function closeModal() { document.getElementById('zodiacModal').style.display = 'none'; document.getElementById('searchResult').innerHTML = ''; }
