@@ -15,20 +15,19 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8772455780561463" crossorigin="anonymous"></script>
 
-
     <style>
         /* ===================================
            CSS 변수 - 오방색 테마 (Korean Traditional)
         =================================== */
         :root {
             /* 오방색 기반 컬러 */
-            --red: #C73E3A;        /* 적(赤) - 남쪽, 열정, 사랑 */
-            --blue: #2E6B8A;       /* 청(靑) - 동쪽, 성실 */
-            --yellow: #E8B830;     /* 황(黃) - 중앙, 부귀 */
-            --white: #F5F0E8;      /* 백(白) - 서쪽, 순수 */
-            --black: #2D2D2D;      /* 흑(黑) - 북쪽, 지혜 */
+            --red: #C73E3A;
+            --blue: #2E6B8A;
+            --yellow: #E8B830;
+            --white: #F5F0E8;
+            --black: #2D2D2D;
             
-            /* 보조색 (간색) */
+            /* 보조색 */
             --gold: #D4A84B;
             --deep-red: #8B2635;
             --soft-blue: #5A9CB8;
@@ -39,7 +38,6 @@
             --gradient-bg: linear-gradient(180deg, var(--cream) 0%, var(--warm-beige) 100%);
             --gradient-header: linear-gradient(135deg, var(--red) 0%, var(--deep-red) 50%, var(--red) 100%);
             --gradient-gold: linear-gradient(135deg, var(--yellow) 0%, var(--gold) 100%);
-            --gradient-accent: linear-gradient(135deg, var(--red) 0%, var(--yellow) 100%);
             
             /* 카드 스타일 */
             --card-bg: rgba(255, 255, 255, 0.92);
@@ -69,14 +67,11 @@
         }
 
         /* ===================================
-           배경 효과 - 구름문과 전통 문양
+           배경 효과
         =================================== */
         .pattern-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none;
             z-index: 0;
             opacity: 0.03;
@@ -85,10 +80,7 @@
 
         .floating-clouds {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -109,8 +101,7 @@
 
         .petal {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 12px; height: 12px;
             background: var(--red);
             opacity: 0.15;
             border-radius: 50% 0 50% 50%;
@@ -124,7 +115,7 @@
         }
 
         /* ===================================
-           헤더 - 단청 스타일
+           헤더
         =================================== */
         header {
             background: var(--gradient-header);
@@ -135,13 +126,10 @@
             overflow: hidden;
         }
 
-        /* 단청 패턴 장식선 */
         header::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 8px;
             background: repeating-linear-gradient(90deg,
                 var(--yellow) 0px, var(--yellow) 20px,
@@ -154,9 +142,7 @@
         header::after {
             content: '';
             position: absolute;
-            bottom: 8px;
-            left: 0;
-            right: 0;
+            bottom: 8px; left: 0; right: 0;
             height: 4px;
             background: var(--gold);
         }
@@ -178,31 +164,6 @@
             color: rgba(255,255,255,0.9);
         }
 
-        /* ===================================
-           배너 - 금색 장식
-        =================================== */
-        .lotto-banner {
-            display: block;
-            background: var(--gradient-gold);
-            color: var(--black);
-            text-decoration: none;
-            padding: 14px 20px;
-            margin: 20px 20px 25px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(212, 168, 75, 0.3);
-            position: relative;
-            z-index: 15;
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .lotto-banner:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 168, 75, 0.4);
-        }
-
         .container { 
             max-width: 500px; 
             margin: 0 auto; 
@@ -212,7 +173,7 @@
         }
 
         /* ===================================
-           카드 - 한지/한옥 느낌
+           카드
         =================================== */
         .step-card {
             background: var(--card-bg);
@@ -225,13 +186,10 @@
             overflow: hidden;
         }
 
-        /* 카드 상단 단청 장식 */
         .step-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, 
                 var(--red) 0%, var(--yellow) 25%, var(--blue) 50%, var(--yellow) 75%, var(--red) 100%);
@@ -246,8 +204,7 @@
 
         .step-num {
             background: var(--gradient-header);
-            width: 34px;
-            height: 34px;
+            width: 34px; height: 34px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -298,7 +255,7 @@
         .gender-text { font-size: 0.85rem; font-weight: 600; }
 
         /* ===================================
-           12띠 그리드 - 전통 느낌
+           12띠 그리드
         =================================== */
         .zodiac-grid {
             display: grid;
@@ -332,8 +289,7 @@
         .zodiac-item.selected::after {
             content: '✓';
             position: absolute;
-            top: 4px;
-            right: 6px;
+            top: 4px; right: 6px;
             font-size: 0.7rem;
             color: var(--red);
             font-weight: bold;
@@ -351,35 +307,138 @@
         }
 
         /* ===================================
-           오행 정보 섹션
+           🆕 랜덤 명언 박스
         =================================== */
-        .info-box {
-            background: linear-gradient(135deg, rgba(46, 107, 138, 0.08) 0%, rgba(232, 184, 48, 0.08) 100%);
-            border: 1px solid rgba(46, 107, 138, 0.2);
-            border-radius: 12px;
-            padding: 16px;
+        .wisdom-box {
+            background: linear-gradient(135deg, rgba(199, 62, 58, 0.08) 0%, rgba(232, 184, 48, 0.12) 100%);
+            border: 1px solid rgba(199, 62, 58, 0.2);
+            border-radius: 16px;
+            padding: 20px;
             margin: 20px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .info-box p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 6px 0;
+        .wisdom-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red), var(--yellow), var(--red));
         }
 
-        .info-box strong {
-            color: var(--blue);
+        .wisdom-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .wisdom-text {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .wisdom-refresh {
+            margin-top: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .wisdom-refresh:hover {
+            color: var(--red);
+        }
+
+        .wisdom-refresh i {
+            transition: transform 0.3s;
+        }
+
+        .wisdom-refresh:hover i {
+            transform: rotate(180deg);
         }
 
         /* ===================================
-           하단 액션바
+           🆕 띠 찾기 버튼 강화
+        =================================== */
+        .find-zodiac-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, rgba(46, 107, 138, 0.1) 0%, rgba(232, 184, 48, 0.15) 100%);
+            border: 2px dashed var(--blue);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .find-zodiac-btn:hover {
+            background: linear-gradient(135deg, rgba(46, 107, 138, 0.15) 0%, rgba(232, 184, 48, 0.2) 100%);
+            border-style: solid;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 107, 138, 0.2);
+        }
+
+        .find-zodiac-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 8px rgba(212, 168, 75, 0.3);
+        }
+
+        .find-zodiac-content {
+            text-align: left;
+        }
+
+        .find-zodiac-title {
+            font-weight: 700;
+            color: var(--blue);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .find-zodiac-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .find-zodiac-arrow {
+            margin-left: auto;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* ===================================
+           하단 액션바 (로또 버튼 제거)
         =================================== */
         .action-area {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: rgba(253, 248, 240, 0.98);
             backdrop-filter: blur(20px);
             padding: 16px 20px;
@@ -391,34 +450,13 @@
             box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
         }
 
-        .btn-lotto {
-            flex: 0.8;
-            background: var(--gradient-gold);
-            color: var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            padding: 14px 16px;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .btn-lotto:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-gold);
-        }
-
         .btn-submit {
-            flex: 2;
+            flex: 1;
+            max-width: 400px;
             background: var(--cream);
             color: var(--text-muted);
             border: 2px solid var(--warm-beige);
-            padding: 14px 20px;
+            padding: 16px 24px;
             border-radius: 50px;
             font-size: 1.05rem;
             font-weight: 700;
@@ -459,8 +497,7 @@
         .share-buttons { display: flex; gap: 12px; justify-content: center; }
 
         .share-btn {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -482,8 +519,7 @@
 
         .copy-toast {
             position: fixed;
-            bottom: 100px;
-            left: 50%;
+            bottom: 100px; left: 50%;
             transform: translateX(-50%) translateY(20px);
             background: var(--blue);
             color: white;
@@ -515,15 +551,12 @@
         .main-footer a { color: var(--red); text-decoration: none; }
 
         /* ===================================
-           모달 - 한지 스타일
+           모달
         =================================== */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(45, 45, 45, 0.7);
             z-index: 200;
             justify-content: center;
@@ -546,9 +579,7 @@
         .modal-content::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 5px;
             background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue), var(--yellow), var(--red));
             border-radius: 20px 20px 0 0;
@@ -629,7 +660,6 @@
             h1 { font-size: 2.5rem; }
         }
 
-        /* 사이드 광고 */
         @media (min-width: 1024px) {
             .side-rail { display: block !important; }
         }
@@ -659,16 +689,15 @@
             <p class="subtitle">12띠로 풀어보는 천생연분의 인연</p>
         </header>
 
-        <a href="https://lottery.spattra.com" class="lotto-banner">
-            🎰 최근 회차 로또 당첨번호 확인하기
-        </a>
+        <div class="container" style="padding: 0; margin-top: 20px;">
 
-        <div class="container" style="padding: 0;">
-
-            <!-- 오행 설명 -->
-            <div class="info-box">
-                <p>🔮 <strong>상생(相生)</strong>: 서로를 살리는 조화로운 관계</p>
-                <p>⚡ <strong>상극(相剋)</strong>: 성장을 위한 긴장의 에너지</p>
+            <!-- 🆕 랜덤 운세 명언 박스 -->
+            <div class="wisdom-box">
+                <span class="wisdom-icon" id="wisdomIcon">🔮</span>
+                <p class="wisdom-text" id="wisdomText">오늘의 인연 이야기를 불러오는 중...</p>
+                <button class="wisdom-refresh" onclick="showRandomWisdom()">
+                    <i class="fas fa-sync-alt"></i> 다른 명언 보기
+                </button>
             </div>
 
             <!-- Step 1: 커플 유형 -->
@@ -692,8 +721,8 @@
 
             <!-- ✅ [중간 광고] -->
             <div class="ad-middle" style="margin: 20px 0; text-align: center; background: rgba(255,255,255,0.8); border-radius: 12px; padding: 10px; border: 1px solid var(--warm-beige);">
-                 <div style="font-size: 0.7em; color: #aaa; margin-bottom: 5px;">Sponsored</div>
-                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <div style="font-size: 0.7em; color: #aaa; margin-bottom: 5px;">Sponsored</div>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
@@ -702,11 +731,18 @@
                 <div class="step-header">
                     <span class="step-num">2</span>
                     <span class="step-title">내 띠는?</span>
-                    <button onclick="openModal()" style="margin-left:auto; background:none; border:none; color:var(--red); font-size:0.88rem; font-weight:bold; cursor:pointer;">
-                        ❓ 띠를 모르겠다면
-                    </button>
                 </div>
                 <div class="zodiac-grid" id="my-grid"></div>
+                
+                <!-- 🆕 강화된 띠 찾기 버튼 -->
+                <button class="find-zodiac-btn" onclick="openModal()">
+                    <div class="find-zodiac-icon">📅</div>
+                    <div class="find-zodiac-content">
+                        <div class="find-zodiac-title">내 띠를 모르겠다면?</div>
+                        <div class="find-zodiac-desc">생년월일로 간편하게 확인하세요</div>
+                    </div>
+                    <i class="fas fa-chevron-right find-zodiac-arrow"></i>
+                </button>
             </div>
 
             <!-- Step 3: 상대 띠 -->
@@ -737,15 +773,14 @@
             <p style="margin-top: 5px;">AI가 전해주는 정교한 띠별 사랑 궁합 ❤️</p>
         </footer>
 
+        <!-- 🆕 하단 액션바 (로또 버튼 제거됨) -->
         <div class="action-area">
-            <a href="https://lottery.spattra.com" class="btn-lotto">🎱 로또 확인</a>
             <button id="btn-match" class="btn-submit" onclick="goToResult()">
                 나와 상대의 띠를 골라주세요 ✨
             </button>
         </div>
 
     </div>
-    <!-- 중앙 끝 -->
 
     <!-- [오른쪽] 사이드 레일 광고 -->
     <aside class="side-rail" style="width: 160px; height: 600px; position: sticky; top: 20px; display: none;">
@@ -755,7 +790,6 @@
     </aside>
 
 </div>
-<!-- 레이아웃 끝 -->
 
 <!-- 띠 찾기 모달 -->
 <div id="zodiacModal" class="modal-overlay">
@@ -779,7 +813,156 @@
 </div>
 
 <script>
-    // 12띠 데이터 - 한국식 순서
+    // ===================================
+    // 🆕 100개 랜덤 운세 명언
+    // ===================================
+    const wisdomList = [
+        // 상생/상극 기본
+        { icon: "🔮", text: "상생(相生)은 서로를 살리는 조화로운 관계입니다" },
+        { icon: "⚡", text: "상극(相剋)은 성장을 위한 긴장의 에너지입니다" },
+        { icon: "☯️", text: "음양의 조화가 완벽한 궁합을 만듭니다" },
+        { icon: "🌊", text: "물(水)은 나무(木)를 키우고, 나무는 불(火)을 태웁니다" },
+        { icon: "🔥", text: "불(火)은 흙(土)을 만들고, 흙은 쇠(金)를 품습니다" },
+        
+        // 사랑과 인연
+        { icon: "💕", text: "인연은 우연이 아닌, 서로를 향한 마음의 끌림입니다" },
+        { icon: "🌹", text: "진정한 사랑은 상대를 있는 그대로 받아들이는 것입니다" },
+        { icon: "💫", text: "천생연분은 노력하는 두 사람에게 찾아옵니다" },
+        { icon: "🦋", text: "사랑은 나비처럼 잡으려 하면 날아가고, 기다리면 다가옵니다" },
+        { icon: "🌸", text: "좋은 인연은 봄꽃처럼 때가 되면 피어납니다" },
+        
+        // 띠별 지혜
+        { icon: "🐭", text: "쥐띠의 지혜: 작은 것에서 큰 것을 발견하세요" },
+        { icon: "🐮", text: "소띠의 성실함: 꾸준함이 사랑을 키웁니다" },
+        { icon: "🐯", text: "호랑이띠의 용기: 사랑에는 용기가 필요합니다" },
+        { icon: "🐰", text: "토끼띠의 부드러움: 온화함이 마음을 녹입니다" },
+        { icon: "🐲", text: "용띠의 기품: 품격 있는 사랑을 추구하세요" },
+        { icon: "🐍", text: "뱀띠의 직관: 마음의 소리에 귀 기울이세요" },
+        { icon: "🐴", text: "말띠의 열정: 뜨거운 사랑은 식지 않습니다" },
+        { icon: "🐐", text: "양띠의 배려: 상대를 먼저 생각하는 마음" },
+        { icon: "🐵", text: "원숭이띠의 재치: 유머는 사랑의 윤활유입니다" },
+        { icon: "🐔", text: "닭띠의 정직: 진실된 마음이 신뢰를 쌓습니다" },
+        { icon: "🐶", text: "개띠의 충성: 한결같은 마음이 사랑을 지킵니다" },
+        { icon: "🐷", text: "돼지띠의 너그러움: 포용력이 관계를 풍요롭게 합니다" },
+        
+        // 오행의 조화
+        { icon: "🌳", text: "목(木)의 기운: 새로운 시작의 에너지를 품으세요" },
+        { icon: "🔥", text: "화(火)의 기운: 열정으로 사랑을 불태우세요" },
+        { icon: "🏔️", text: "토(土)의 기운: 안정감이 관계의 기반입니다" },
+        { icon: "⚔️", text: "금(金)의 기운: 결단력으로 인연을 잡으세요" },
+        { icon: "💧", text: "수(水)의 기운: 유연함으로 어려움을 넘기세요" },
+        
+        // 관계의 지혜
+        { icon: "🤝", text: "좋은 관계는 서로의 부족함을 채워주는 것입니다" },
+        { icon: "👂", text: "경청은 사랑의 시작입니다" },
+        { icon: "💬", text: "대화는 마음을 잇는 다리입니다" },
+        { icon: "🙏", text: "감사하는 마음이 사랑을 오래가게 합니다" },
+        { icon: "🤗", text: "포옹 한 번이 천 마디 말보다 따뜻합니다" },
+        { icon: "😊", text: "미소는 사랑을 전하는 가장 쉬운 방법입니다" },
+        { icon: "💝", text: "작은 선물에 담긴 진심이 마음을 움직입니다" },
+        { icon: "📱", text: "바쁜 중에도 연락하는 것이 사랑입니다" },
+        { icon: "🍽️", text: "함께 밥을 먹는 것만으로도 정이 깊어집니다" },
+        { icon: "🚶", text: "함께 걷는 길이 인생의 여정이 됩니다" },
+        
+        // 운명과 노력
+        { icon: "⭐", text: "별이 인연을 정해도, 사랑은 스스로 만듭니다" },
+        { icon: "🌙", text: "달빛 아래 맺어진 인연은 영원합니다" },
+        { icon: "☀️", text: "햇살처럼 따뜻한 마음이 사랑을 키웁니다" },
+        { icon: "🌈", text: "비 온 뒤에 무지개가 피듯, 시련 뒤에 사랑이 깊어집니다" },
+        { icon: "🍀", text: "행운은 준비된 사람에게 찾아옵니다" },
+        { icon: "🎯", text: "목표가 같은 커플은 더 멀리 갑니다" },
+        { icon: "⏰", text: "사랑에도 때가 있습니다. 인내하세요" },
+        { icon: "🔑", text: "마음의 문을 여는 열쇠는 진심입니다" },
+        { icon: "🪞", text: "상대는 나의 거울입니다" },
+        { icon: "🎭", text: "있는 그대로의 모습이 가장 아름답습니다" },
+        
+        // 전통 격언
+        { icon: "📜", text: "백년해로(百年偕老): 함께 늙어가는 것이 진정한 사랑" },
+        { icon: "🏠", text: "가화만사성(家和萬事成): 가정의 화목이 모든 것의 시작" },
+        { icon: "❤️", text: "일심동체(一心同體): 하나의 마음, 하나의 몸" },
+        { icon: "🌺", text: "화이부동(和而不同): 다르지만 조화롭게" },
+        { icon: "🎋", text: "죽마고우(竹馬故友): 어릴 적 인연이 평생을 함께합니다" },
+        { icon: "🐦", text: "비익련리(比翼連理): 한 쌍의 새처럼 함께 날아요" },
+        { icon: "💑", text: "부창부수(夫唱婦隨): 서로 호응하며 살아가요" },
+        { icon: "🌊", text: "해로동혈(偕老同穴): 같이 늙고 같이 묻혀요" },
+        { icon: "🎎", text: "금슬지락(琴瑟之樂): 거문고와 비파처럼 조화로운 사이" },
+        { icon: "💐", text: "화촉동방(華燭洞房): 아름다운 첫날밤의 시작" },
+        
+        // 계절과 사랑
+        { icon: "🌷", text: "봄처럼 설레는 마음으로 사랑을 시작하세요" },
+        { icon: "🌻", text: "여름처럼 뜨겁게, 하지만 지치지 않게" },
+        { icon: "🍂", text: "가을처럼 풍요로운 사랑을 거두세요" },
+        { icon: "❄️", text: "겨울처럼 서로를 따뜻하게 안아주세요" },
+        { icon: "🌱", text: "사랑도 씨앗처럼 돌봐야 자랍니다" },
+        { icon: "🌾", text: "정성껏 가꾼 사랑은 풍성한 열매를 맺습니다" },
+        
+        // 현대적 조언
+        { icon: "📲", text: "좋은 아침 인사 하나가 하루를 밝힙니다" },
+        { icon: "🎬", text: "함께 보는 영화 한 편이 추억이 됩니다" },
+        { icon: "🎵", text: "둘만의 노래가 있다면 사랑은 더 깊어집니다" },
+        { icon: "📸", text: "함께한 순간을 기록하세요" },
+        { icon: "✈️", text: "새로운 곳을 함께 가면 사랑도 새로워집니다" },
+        { icon: "🍳", text: "함께 요리하는 시간이 사랑을 키웁니다" },
+        { icon: "🎮", text: "함께 웃을 수 있다면 무엇이든 좋습니다" },
+        { icon: "📚", text: "서로의 취미를 존중하세요" },
+        { icon: "🏃", text: "건강한 몸에 건강한 사랑이 깃듭니다" },
+        { icon: "😴", text: "편안한 잠자리가 좋은 관계의 시작입니다" },
+        
+        // 갈등과 화해
+        { icon: "🕊️", text: "먼저 손 내미는 것이 진정한 용기입니다" },
+        { icon: "💔", text: "상처는 시간과 사랑으로 치유됩니다" },
+        { icon: "🌧️", text: "비가 와야 땅이 단단해지듯, 시련이 사랑을 단단하게 합니다" },
+        { icon: "🔧", text: "관계도 수리가 필요합니다. 방치하지 마세요" },
+        { icon: "🧩", text: "서로 다른 조각이 모여 완벽한 그림이 됩니다" },
+        { icon: "⚖️", text: "균형 잡힌 관계가 오래갑니다" },
+        { icon: "🛡️", text: "서로를 지켜주는 것이 사랑입니다" },
+        { icon: "🌉", text: "오해의 강을 건너면 더 깊은 이해가 있습니다" },
+        
+        // 미래 지향
+        { icon: "🏡", text: "함께 꾸는 미래가 현실이 됩니다" },
+        { icon: "👶", text: "사랑의 결실은 가장 큰 축복입니다" },
+        { icon: "👴👵", text: "함께 늙어가는 것이 가장 로맨틱합니다" },
+        { icon: "🎁", text: "매일이 선물입니다. 함께여서 더욱" },
+        { icon: "🌅", text: "함께 맞이하는 아침이 가장 아름답습니다" },
+        { icon: "🌃", text: "함께 보내는 밤이 가장 편안합니다" },
+        { icon: "🎄", text: "특별한 날은 함께여서 더 특별합니다" },
+        { icon: "🎂", text: "매년 함께 축하받는 것이 행복입니다" },
+        
+        // 자기 성장
+        { icon: "🪴", text: "나를 사랑해야 상대도 사랑할 수 있습니다" },
+        { icon: "💪", text: "더 나은 내가 되면 더 좋은 사랑이 옵니다" },
+        { icon: "📖", text: "배움을 멈추지 마세요. 사랑도 배워야 합니다" },
+        { icon: "🧘", text: "마음의 평화가 좋은 관계의 기반입니다" },
+        { icon: "🎨", text: "사랑은 예술입니다. 정성껏 그려가세요" },
+        { icon: "✨", text: "반짝이는 순간들이 모여 빛나는 인생이 됩니다" },
+        { icon: "🌟", text: "당신은 누군가의 별입니다" },
+        { icon: "💎", text: "진정한 사랑은 다이아몬드처럼 영원합니다" },
+        
+        // 추가 명언
+        { icon: "🦢", text: "백조처럼 우아하게, 하지만 물 아래선 열심히" },
+        { icon: "🐢", text: "느려도 괜찮습니다. 함께라면" },
+        { icon: "🦁", text: "용감하게 사랑을 고백하세요" },
+        { icon: "🐘", text: "큰 마음으로 작은 것도 기억하세요" },
+        { icon: "🌍", text: "세상에서 가장 소중한 사람은 곁에 있습니다" },
+        { icon: "🎪", text: "인생은 서커스, 사랑은 마술입니다" },
+        { icon: "🎡", text: "오르막과 내리막이 있어도 함께 타면 즐겁습니다" },
+        { icon: "🚀", text: "함께라면 어디든 갈 수 있습니다" }
+    ];
+
+    // 랜덤 명언 표시 함수
+    function showRandomWisdom() {
+        const idx = Math.floor(Math.random() * wisdomList.length);
+        const wisdom = wisdomList[idx];
+        document.getElementById('wisdomIcon').textContent = wisdom.icon;
+        document.getElementById('wisdomText').textContent = wisdom.text;
+        
+        // 애니메이션 효과
+        const box = document.querySelector('.wisdom-box');
+        box.style.transform = 'scale(0.98)';
+        setTimeout(() => { box.style.transform = 'scale(1)'; }, 150);
+    }
+
+    // 12띠 데이터
     const zodiacs = [
         { id: 'rat', name: '쥐띠', icon: '🐭', element: '수(水)' },
         { id: 'ox', name: '소띠', icon: '🐮', element: '토(土)' },
@@ -801,7 +984,7 @@
         return zodiacs.find(z => z.id === id);
     }
 
-    // 배경 효과 - 구름과 꽃잎
+    // 배경 효과
     function createClouds() {
         const container = document.getElementById('clouds');
         const cloudSymbols = ['☁️', '🌸', '✿'];
@@ -816,7 +999,6 @@
             container.appendChild(el);
         }
 
-        // 꽃잎 효과
         for (let i = 0; i < 12; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
@@ -954,6 +1136,7 @@
         createClouds();
         createGrid('my-grid', false);
         createGrid('partner-grid', true);
+        showRandomWisdom(); // 🆕 페이지 로드시 랜덤 명언 표시
     };
 </script>
 
