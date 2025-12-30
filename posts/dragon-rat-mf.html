@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>용띠 💕 쥐띠 궁합 | 띠별 사랑 궁합</title>
+    <meta name="description" content="용띠와 쥐띠의 남녀 커플 궁합 분석! 93점 - 환상의 커플. 오행 중립 관계로 서로 다른 기운이 균형을 이뤄요">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3198582468837090" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            --red: #C73E3A;
+            --blue: #2E6B8A;
+            --yellow: #E8B830;
+            --gold: #D4A84B;
+            --deep-red: #8B2635;
+            --cream: #FDF8F0;
+            --warm-beige: #E8DFD0;
+            --text-primary: #2D2D2D;
+            --text-secondary: #5A5A5A;
+            --text-muted: #8A8A8A;
+            --gradient-bg: linear-gradient(180deg, var(--cream) 0%, var(--warm-beige) 100%);
+            --gradient-header: linear-gradient(135deg, var(--red) 0%, var(--deep-red) 50%, var(--red) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--yellow) 0%, var(--gold) 100%);
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-border: rgba(212, 168, 75, 0.3);
+            --card-shadow: 0 8px 32px rgba(45, 45, 45, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .pattern-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-14 4s-9-2-11 3c-2 5 3 9 3 14s-3 9 2 12c5 3 9-2 14-2s9 5 14 2c5-3 0-7 0-12s5-9 3-14c-2-5-6-3-11-3z' fill='%23C73E3A' fill-opacity='1'/%3E%3C/svg%3E");
+        }
+
+        .layout-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 650px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .side-rail {
+            width: 160px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .side-rail { display: block; }
+        }
+
+        .side-rail-inner {
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .side-rail-label {
+            font-size: 0.7em;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        /* 헤더 */
+        header {
+            background: var(--gradient-header);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background: repeating-linear-gradient(90deg,
+                var(--yellow) 0px, var(--yellow) 15px,
+                var(--blue) 15px, var(--blue) 30px,
+                var(--red) 30px, var(--red) 45px
+            );
+            border-radius: 0 0 30px 30px;
+        }
+
+        .zodiac-pair {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .zodiac-pair img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin: 0 5px;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .couple-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .couple-type {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+        }
+
+        /* 점수 카드 */
+        .score-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 0 15px 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        .score-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue), var(--yellow), var(--red));
+            border-radius: 24px 24px 0 0;
+        }
+
+        .score-circle {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: conic-gradient(var(--red) 0deg, var(--gold) 334.8deg, var(--warm-beige) 334.8deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(199, 62, 58, 0.2);
+        }
+
+        .score-inner {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            padding: 8px 25px;
+            background: var(--gradient-header);
+            color: white;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3);
+        }
+
+        .score-comment {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .element-relation {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(46, 107, 138, 0.1), rgba(232, 184, 48, 0.15));
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--blue);
+        }
+
+        .element-badge {
+            padding: 4px 12px;
+            background: var(--blue);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* 광고 */
+        .ad-container {
+            margin: 20px 15px;
+            text-align: center;
+            background: rgba(255,255,255,0.6);
+            border-radius: 12px;
+            padding: 10px;
+            border: 1px solid var(--warm-beige);
+        }
+
+        .ad-label {
+            font-size: 0.7em;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        /* 콘텐츠 카드 */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 0 15px 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--warm-beige);
+        }
+
+        .section-icon {
+            font-size: 1.3rem;
+        }
+
+        .content-box {
+            background: rgba(253, 248, 240, 0.5);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .content-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .element-box {
+            background: linear-gradient(135deg, rgba(46, 107, 138, 0.08), rgba(232, 184, 48, 0.1));
+            border-left: 4px solid var(--blue);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(199, 62, 58, 0.05), rgba(232, 184, 48, 0.08));
+            border-left: 4px solid var(--red);
+        }
+
+        .future-box {
+            background: linear-gradient(135deg, rgba(232, 184, 48, 0.1), rgba(212, 168, 75, 0.15));
+            border-left: 4px solid var(--gold);
+        }
+
+        .intro-text {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            line-height: 1.9;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(199, 62, 58, 0.05), rgba(232, 184, 48, 0.08));
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(253, 248, 240, 0.5);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .tips-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* 버튼 그룹 */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin: 25px 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back {
+            background: var(--cream);
+            color: var(--text-primary);
+            border: 2px solid var(--warm-beige);
+        }
+
+        .btn-back:hover {
+            border-color: var(--gold);
+            background: rgba(232, 184, 48, 0.1);
+        }
+
+        .btn-share {
+            background: var(--gradient-header);
+            color: white;
+            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3);
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(199, 62, 58, 0.4);
+        }
+
+        /* 공유 버튼 */
+        .share-section {
+            text-align: center;
+            margin: 25px 15px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+        }
+
+        .share-title {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid var(--warm-beige);
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .share-kakao:hover { background: #FEE500; border-color: #FEE500; color: #3C1E1E; }
+        .share-facebook:hover { background: #1877F2; border-color: #1877F2; color: white; }
+        .share-twitter:hover { background: #000; border-color: #000; color: white; }
+        .share-copy:hover { background: var(--red); border-color: var(--red); color: white; }
+
+        /* 푸터 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        /* 토스트 */
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 반응형 */
+        @media (max-width: 480px) {
+            .zodiac-pair { font-size: 2.8rem; }
+            .zodiac-pair img { width: 55px; height: 55px; }
+            .couple-title { font-size: 1.3rem; }
+            .score-circle { width: 140px; height: 140px; }
+            .score-inner { width: 110px; height: 110px; }
+            .score-number { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+
+<div class="layout-wrapper">
+
+    <!-- 왼쪽 사이드레일 광고 -->
+    <aside class="side-rail">
+        <div class="side-rail-inner">
+            <div class="side-rail-label">Advertisement</div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="vertical" data-full-width-responsive="false"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="main-content">
+
+        <header>
+            <div class="zodiac-pair">
+                <img src="../images/zodiac/dr.png" alt="용띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">🐲
+                <span style="margin: 0 5px;">💕</span>
+                <img src="../images/zodiac/rat.png" alt="쥐띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">🐭
+            </div>
+            <h1 class="couple-title">용띠 & 쥐띠</h1>
+            <p class="couple-type">👫 남녀 커플</p>
+        </header>
+
+        <!-- 상단 광고 -->
+        <div class="ad-container">
+            <div class="ad-label">Sponsored</div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- 점수 카드 -->
+        <div class="score-card">
+            <div class="score-circle">
+                <div class="score-inner">
+                    <span class="score-number">93</span>
+                    <span class="score-label">/ 100점</span>
+                </div>
+            </div>
+            <div class="grade-badge">💕 A+ 등급</div>
+            <p class="score-comment">✨ 최고의 궁합! 서로를 완성시키는 관계</p>
+            <div class="element-relation">
+                <span class="element-badge">중립</span>
+                <span>토(土) + 수(水)</span>
+            </div>
+        </div>
+
+        <!-- 중간 광고 -->
+        <div class="ad-container">
+            <div class="ad-label">Sponsored</div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- AI 분석 콘텐츠 -->
+        <div class="content-card">
+            <p class="intro-text">용띠 남성과 쥐띠 여성이 만나 하나가 되어가는 이 아름다운 인연은 마치 태양과 달이 조화를 이루듯, 불가분의 관계를 맺고 있습니다. 토(土)의 기운과 수(水)의 기운이 만나 새로운 생명력을 불어넣는 이 운명적인 조우는 두 사람을 영원히 함께 하게 할 것입니다.</p>
+
+<h3 class="section-title"><span class="section-icon">💕</span> 성격 궁합 분석</h3>
+<div class="content-box">
+<p>용띠 남성은 자신감 넘치고 야망이 큰 카리스마 있는 인물입니다. 반면 쥐띠 여성은 지혜롭고 적응력이 뛰어난 현명한 여성입니다. 이 두 사람의 성격은 서로 완벽하게 조화를 이룹니다. 용띠 남성의 강인함과 대담함이 쥐띠 여성의 온화함과 지혜로움을 보완해 주고, 쥐띠 여성의 현명함은 용띠 남성의 욕심을 적절히 조절해 줍니다. 
+두 사람은 대화할 때 서로의 의견을 존중하며 상대방의 장점을 잘 이해하고 있습니다. 갈등이 생겨도 쥐띠 여성의 유연한 대처 방식으로 원만하게 해결할 수 있습니다. 이처럼 용띠 남성과 쥐띠 여성의 성격은 일상생활에서 완벽한 균형을 이루고 있습니다.</p>
+</div>
+
+<h3 class="section-title"><span class="section-icon">🔮</span> 오행으로 보는 두 사람</h3>
+<div class="content-box element-box">
+<p>용띠 남성과 쥐띠 여성의 오행 관계는 중립입니다. 이는 서로 다른 기운이 균형을 이루고 있다는 것을 의미합니다. 용띠 남성의 토(土) 기운과 쥐띠 여성의 수(水) 기운은 서로 상호작용하며 새로운 에너지를 창출합니다. 토(土)의 안정감과 수(水)의 유동성이 합쳐져 두 사람은 서로를 이해하고 존중하며, 원만한 관계를 유지할 수 있습니다. 이처럼 균형잡힌 오행 관계는 이 커플의 앞으로의 삶에 긍정적인 영향을 미칠 것입니다.</p>
+</div>
+
+<h3 class="section-title"><span class="section-icon">⚡</span> 주의할 점과 극복 방법</h3>
+<div class="content-box warning-box">
+<p>용띠 남성과 쥐띠 여성 커플이 가장 주의해야 할 점은 서로의 차이를 인정하고 존중하는 것입니다. 용띠 남성은 때때로 자신감과 야망으로 인해 쥐띠 여성을 압도할 수 있습니다. 반면 쥐띠 여성은 자신의 지혜로움으로 용띠 남성을 다루려 들 수 있습니다. 이런 경우 서로의 의견을 경청하고 이해하려 노력하는 자세가 필요합니다. 
+서로의 장점을 인정하고 존중하는 마음을 갖는다면, 용띠 남성의 강인함과 쥐띠 여성의 현명함이 조화롭게 융화될 것입니다. 이를 통해 두 사람은 서로를 더욱 사랑하고 신뢰하는 깊이 있는 관계를 만들어나갈 수 있습니다.</p>
+</div>
+
+<h3 class="section-title"><span class="section-icon">✨</span> 미래 전망</h3>
+<div class="content-box future-box">
+<p>용띠 남성과 쥐띠 여성의 궁합은 매우 좋습니다. 두 사람의 앞으로의 삶은 행복과 풍요로움으로 가득할 것입니다. 결혼 생활에서는 서로를 이해하고 존중하는 모습으로 조화로운 가정을 꾸릴 것입니다. 또한 자녀를 둘 경우 용띠 아버지와 쥐띠 어머니의 완벽한 조화로 행복한 가정을 이룰 것입니다. 
+나이가 들어감에 따라 용띠 남성은 더욱 여유롭고 현명해질 것이며, 쥐띠 여성은 더욱 지혜롭고 안정적인 모습을 보일 것입니다. 두 사람은 노후에도 서로를 돌보며 아름답고 풍요로운 인생을 보내게 될 것입니다. 이처럼 용띠와 쥐띠의 환상적인 궁합은 두 사람의 앞날을 더욱 아름답게 만들어줄 것입니다.</p>
+</div>
+
+<h3 class="section-title"><span class="section-icon">💝</span> 사랑을 키우는 꿀팁</h3>
+<ul class="tips-list">
+    <li><span class="tip-icon">🌹</span> 용띠 남성은 쥐띠 여성에게 자신감 넘치는 모습으로 다가가고, 쥐띠 여성은 용띠 남성에게 지혜로운 조언을 해주며 서로를 존중하는 대화를 나누는 것이 좋습니다.</li>
+    <li><span class="tip-icon">🎁</span> 용띠 남성은 쥐띠 여성에게 실용적이면서도 품격있는 선물을, 쥐띠 여성은 용띠 남성에게 개성있고 창의적인 선물을 주어 서로의 개성을 인정해주는 것이 좋습니다.</li>
+    <li><span class="tip-icon">🏠</span> 동거나 결혼 생활에서는 서로의 역할을 존중하며 가사와 육아 등의 책임을 균형있게 분담하는 것이 중요합니다.</li>
+    <li><span class="tip-icon">💑</span> 장기적으로 두 사람은 서로의 성격 차이를 인정하고 이해하며, 감사와 사랑의 마음을 지속적으로 표현하는 것이 관계 유지의 핵심입니다.</li>
+</ul>
+        </div>
+
+        <!-- 하단 광고 -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- 공유 섹션 -->
+        <div class="share-section">
+            <p class="share-title">친구에게 공유하고 같이 궁합 보세요 🧧</p>
+            <div class="share-buttons">
+                <button onclick="shareKakao()" class="share-btn share-kakao" title="카카오톡 공유">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.8 1.86 5.25 4.64 6.64-.15.54-.97 3.48-1 3.62 0 .08.03.16.09.21.06.05.14.07.22.05.29-.04 3.4-2.24 3.94-2.63.69.1 1.4.16 2.11.16 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+                </button>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="this.href+=encodeURIComponent(window.location.href);return true;" target="_blank" class="share-btn share-facebook" title="페이스북 공유">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=" onclick="this.href+=encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('용띠 💕 쥐띠 궁합 93점!');return true;" target="_blank" class="share-btn share-twitter" title="X 공유">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <button onclick="copyLink()" class="share-btn share-copy" title="링크 복사">
+                    <i class="fas fa-link"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 버튼 그룹 -->
+        <div class="btn-group">
+            <a href="../index.html" class="btn btn-back">
+                <i class="fas fa-arrow-left"></i> 다른 궁합 보기
+            </a>
+            <button onclick="copyLink()" class="btn btn-share">
+                <i class="fas fa-share-alt"></i> 결과 공유하기
+            </button>
+        </div>
+
+        <footer>
+            <p>© 2025 띠별 사랑 궁합 | 천생연분을 찾아서</p>
+            <p style="margin-top: 5px;"><a href="../index.html">홈으로 돌아가기</a></p>
+        </footer>
+
+    </div>
+
+    <!-- 오른쪽 사이드레일 광고 -->
+    <aside class="side-rail">
+        <div class="side-rail-inner">
+            <div class="side-rail-label">Advertisement</div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="vertical" data-full-width-responsive="false"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </aside>
+
+</div>
+
+<div id="copy-toast" class="copy-toast">✅ 링크가 복사되었습니다!</div>
+
+<script>
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+    }
+
+    function shareKakao() {
+        if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+            Kakao.Link.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '용띠 💕 쥐띠 궁합 결과',
+                    description: '93점! 최고의 궁합! 서로를 완성시키는 관계',
+                    imageUrl: 'https://your-domain.com/og-image.png',
+                    link: { mobileWebUrl: window.location.href, webUrl: window.location.href }
+                },
+                buttons: [{ title: '궁합 보러가기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } }]
+            });
+        } else {
+            copyLink();
+            alert('카카오톡 공유 대신 링크가 복사되었습니다!');
+        }
+    }
+</script>
+
+</body>
+</html>
