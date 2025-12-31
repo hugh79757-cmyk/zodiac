@@ -819,6 +819,37 @@
             .zodiac-icon img { width: 56px; height: 56px; }
             h1 { font-size: 2.5rem; }
         }
+
+        /* ===================================
+   🚫 구글 번역 상단 바 완벽 제거
+   =================================== */
+        body { 
+        top: 0 !important; 
+        position: static !important; 
+        min-height: 100vh !important;
+        }
+
+        .goog-te-banner-frame { 
+        display: none !important; 
+        visibility: hidden !important;
+        height: 0 !important;
+        }
+
+        .goog-tooltip { 
+        display: none !important; 
+        }
+
+        .goog-text-highlight { 
+        background-color: transparent !important; 
+        box-shadow: none !important; 
+        }
+
+        /* 국기 버튼 영역에 여유 공간(padding)을 좀 더 줍니다 */
+        .translation-flags {
+        padding-top: 20px !important; /* 위쪽 여백 추가 */
+        margin-top: 0 !important;
+        }
+        
     </style>
 </head>
 <body>
