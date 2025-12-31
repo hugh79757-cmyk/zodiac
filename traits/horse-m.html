@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta name="description" content="말띠 남성의 타고난 성격, 연애 스타일, 장단점 및 재물운을 상세하게 분석해 드립니다. 무료 띠별 운세 확인하세요.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>말띠 남성의 성격과 운세</title>
+    <title>말띠 남성 성격과 운세 완벽 분석 | 띠별 사랑 궁합</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -82,8 +83,62 @@
             background: #555;
         }
     </style>
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="말띠 남성 성격과 운세 분석">
+    <meta property="og:description" content="말띠 남성의 성격, 연애, 재물운을 확인해보세요.">
+    <meta property="og:image" content="https://zodiac.techpawz.com/images/zodiac/horse.png">
+            
+
+    <style>
+        /* 🌍 국기 버튼 스타일 */
+        .translation-flags {
+            display: flex; justify-content: center; gap: 12px;
+            padding: 20px 0 10px; flex-wrap: wrap; position: relative; z-index: 10001;
+        }
+        .flag-btn {
+            display: block; width: 36px; height: 36px; border-radius: 50%; overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.6); box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s; cursor: pointer; background: white;
+        }
+        .flag-btn img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
+        .flag-btn:hover { transform: translateY(-3px) scale(1.15); border-color: #D4A84B; }
+
+        /* 🚫 구글 번역 상단 바 강제 제거 */
+        body { top: 0 !important; position: static !important; min-height: 100vh !important; }
+        .goog-te-banner-frame { display: none !important; height: 0 !important; visibility: hidden !important; }
+        .goog-tooltip { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+        
+        /* 모바일 최적화 */
+        @media (max-width: 480px) {
+            .translation-flags {
+                justify-content: flex-start; overflow-x: auto;
+                padding-left: 20px; padding-right: 20px; white-space: nowrap; flex-wrap: nowrap;
+                scrollbar-width: none;
+            }
+            .translation-flags::-webkit-scrollbar { display: none; }
+            .flag-btn { flex: 0 0 auto; }
+        }
+    </style>
+
 </head>
 <body>
+
+    <!-- 🌍 국기 버튼 (자동 삽입됨) -->
+    <div class="translation-flags">
+        <a href="javascript:void(0)" onclick="triggerTranslate('ko')" class="flag-btn" title="한국어"><img src="https://flagcdn.com/w80/kr.png" alt="KR"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('en')" class="flag-btn" title="English"><img src="https://flagcdn.com/w80/us.png" alt="US"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('zh-CN')" class="flag-btn" title="中文"><img src="https://flagcdn.com/w80/cn.png" alt="CN"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('ja')" class="flag-btn" title="日本語"><img src="https://flagcdn.com/w80/jp.png" alt="JP"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('th')" class="flag-btn" title="ไทย"><img src="https://flagcdn.com/w80/th.png" alt="TH"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('vi')" class="flag-btn" title="Tiếng Việt"><img src="https://flagcdn.com/w80/vn.png" alt="VN"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('id')" class="flag-btn" title="Indonesia"><img src="https://flagcdn.com/w80/id.png" alt="ID"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('es')" class="flag-btn" title="Español"><img src="https://flagcdn.com/w80/es.png" alt="ES"></a>
+        <a href="javascript:void(0)" onclick="triggerTranslate('fr')" class="flag-btn" title="Français"><img src="https://flagcdn.com/w80/fr.png" alt="FR"></a>
+    </div>
+    <div id="google_translate_element" style="display:none;"></div>
+
     <div class="container">
         <div class="header">
             <!-- 이미지 적용된 부분 -->
@@ -125,5 +180,46 @@
             <i class="fas fa-home"></i> 홈으로 돌아가기
         </a>
     </div>
+
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'ko',
+            includedLanguages: 'ko,en,zh-CN,ja,th,vi,id,es,fr',
+            autoDisplay: false
+        }, 'google_translate_element');
+
+        setTimeout(function() {
+            const savedLang = localStorage.getItem('selectedLang');
+            if (savedLang && savedLang !== 'ko') {
+                triggerTranslate(savedLang);
+            }
+        }, 500);
+
+        setInterval(function() {
+            if (document.body.style.top !== "0px") document.body.style.top = "0px";
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) banner.style.display = 'none';
+        }, 1000);
+    }
+
+    function triggerTranslate(langCode) {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = langCode;
+            select.dispatchEvent(new Event('change'));
+            localStorage.setItem('selectedLang', langCode);
+        }
+    }
+
+    (function() {
+        var gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.async = true;
+        gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(gtScript);
+    })();
+    </script>
+
 </body>
 </html>
