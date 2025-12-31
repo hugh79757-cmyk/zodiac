@@ -951,21 +951,22 @@
         setTimeout(() => { box.style.transform = 'scale(1)'; }, 150);
     }
 
-    // 🆕 12띠 데이터 - GitHub 이미지 경로 적용
+        // 🆕 12띠 데이터 - (수정됨: 경로 맨 앞에 / 추가)
     const zodiacs = [
-        { id: 'rat', name: '쥐띠', icon: '🐭', img: 'images/zodiac/rat.png', element: '수(水)' },
-        { id: 'ox', name: '소띠', icon: '🐮', img: 'images/zodiac/ox.png', element: '토(土)' },
-        { id: 'tiger', name: '호랑이띠', icon: '🐯', img: 'images/zodiac/ti.png', element: '목(木)' },
-        { id: 'rabbit', name: '토끼띠', icon: '🐰', img: 'images/zodiac/ra.png', element: '목(木)' },
-        { id: 'dragon', name: '용띠', icon: '🐲', img: 'images/zodiac/dr.png', element: '토(土)' },
-        { id: 'snake', name: '뱀띠', icon: '🐍', img: 'images/zodiac/sn.png', element: '화(火)' },
-        { id: 'horse', name: '말띠', icon: '🐴', img: 'images/zodiac/ho.png', element: '화(火)' },
-        { id: 'goat', name: '양띠', icon: '🐐', img: 'images/zodiac/sh.png', element: '토(土)' },
-        { id: 'monkey', name: '원숭이띠', icon: '🐵', img: 'images/zodiac/mo.png', element: '금(金)' },
-        { id: 'rooster', name: '닭띠', icon: '🐔', img: 'images/zodiac/ch.png', element: '금(金)' },
-        { id: 'dog', name: '개띠', icon: '🐶', img: 'images/zodiac/do.png', element: '토(土)' },
-        { id: 'pig', name: '돼지띠', icon: '🐷', img: 'images/zodiac/pi.png', element: '수(水)' }
+        { id: 'rat', name: '쥐띠', icon: '🐭', img: '/images/zodiac/rat.png', element: '수(水)' },
+        { id: 'ox', name: '소띠', icon: '🐮', img: '/images/zodiac/ox.png', element: '토(土)' },
+        { id: 'tiger', name: '호랑이띠', icon: '🐯', img: '/images/zodiac/ti.png', element: '목(木)' },
+        { id: 'rabbit', name: '토끼띠', icon: '🐰', img: '/images/zodiac/ra.png', element: '목(木)' },
+        { id: 'dragon', name: '용띠', icon: '🐲', img: '/images/zodiac/dr.png', element: '토(土)' },
+        { id: 'snake', name: '뱀띠', icon: '🐍', img: '/images/zodiac/sn.png', element: '화(火)' },
+        { id: 'horse', name: '말띠', icon: '🐴', img: '/images/zodiac/ho.png', element: '화(火)' },
+        { id: 'goat', name: '양띠', icon: '🐐', img: '/images/zodiac/sh.png', element: '토(土)' },
+        { id: 'monkey', name: '원숭이띠', icon: '🐵', img: '/images/zodiac/mo.png', element: '금(金)' },
+        { id: 'rooster', name: '닭띠', icon: '🐔', img: '/images/zodiac/ch.png', element: '금(金)' },
+        { id: 'dog', name: '개띠', icon: '🐶', img: '/images/zodiac/do.png', element: '토(土)' },
+        { id: 'pig', name: '돼지띠', icon: '🐷', img: '/images/zodiac/pi.png', element: '수(水)' }
     ];
+
 
     let myZodiac = null, partnerZodiac = null, selectedGender = 'mf';
 
