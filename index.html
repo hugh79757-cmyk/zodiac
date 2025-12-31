@@ -9,13 +9,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- 파비콘 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+    <!-- 파비콘 (매듭 하트) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>.bg{fill:%23FDF8F0;}.knot{fill:none;stroke:%23C73E3A;stroke-width:8;stroke-linecap:round;}</style><circle cx='50' cy='50' r='48' class='bg'/><path d='M30,35 Q50,15 70,35 T30,65 Q50,85 70,65' class='knot'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>💘</text></svg>">
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3198582468837090" crossorigin="anonymous"></script>
 
     <style>
+                /* ===================================
+           🌍 다국어 번역 버튼 스타일 (수정됨)
+        =================================== */
+        .translation-flags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            /* 👇 상단 여백을 넉넉히 줘서 구글 바가 생겨도 안 가려지게 함 */
+            padding: 20px 0 10px; 
+            flex-wrap: wrap;
+            position: relative;
+            /* 👇 Z-index를 무식하게 높여서 무조건 맨 위에 뜨게 함 */
+            z-index: 2147483647; 
+        }
+
+        .flag-btn {
+            display: block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            background: white; /* 배경색 추가 */
+        }
+
+        .flag-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+        }
+
+        .flag-btn:hover {
+            transform: translateY(-3px) scale(1.15);
+            border-color: var(--gold);
+            box-shadow: 0 6px 12px rgba(212, 168, 75, 0.3);
+            z-index: 10;
+        }
+
+        /* ===================================
+           🚫 구글 번역 상단 바 완벽 제거 (강력 버전)
+           =================================== */
+        /* 1. 상단 프레임(흰색 바) 숨김 */
+        iframe.goog-te-banner-frame { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        
+        /* 2. 바디가 아래로 밀리는 것 강제 복구 */
+        body { 
+            top: 0px !important; 
+            position: static !important; 
+            min-height: 100vh !important;
+        }
+        
+        /* 3. 기타 구글 요소 숨김 */
+        .goog-tooltip { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+        
+        /* 4. 모바일 최적화 */
+        @media (max-width: 480px) {
+            .translation-flags {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+                white-space: nowrap;
+                flex-wrap: nowrap; 
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .translation-flags::-webkit-scrollbar { display: none; }
+            .flag-btn { flex: 0 0 auto; }
+        }
+
+
         /* ===================================
            CSS 변수 - 오방색 테마
         =================================== */
@@ -137,16 +216,10 @@
             text-align: center;
         }
 
-        .side-rail-label {
-            font-size: 0.7em;
-            color: #aaa;
-            margin-bottom: 8px;
-        }
+        .side-rail-label { font-size: 0.7em; color: #aaa; margin-bottom: 8px; }
 
         @media (min-width: 1024px) {
-            .side-rail {
-                display: block;
-            }
+            .side-rail { display: block; }
         }
 
         /* ===================================
@@ -163,23 +236,12 @@
 
         header::before {
             content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 8px;
-            background: repeating-linear-gradient(90deg,
-                var(--yellow) 0px, var(--yellow) 20px,
-                var(--blue) 20px, var(--blue) 40px,
-                var(--red) 40px, var(--red) 60px,
-                var(--white) 60px, var(--white) 80px
-            );
+            position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+            background: repeating-linear-gradient(90deg, var(--yellow) 0px, var(--yellow) 20px, var(--blue) 20px, var(--blue) 40px, var(--red) 40px, var(--red) 60px, var(--white) 60px, var(--white) 80px);
         }
 
         header::after {
-            content: '';
-            position: absolute;
-            bottom: 8px; left: 0; right: 0;
-            height: 4px;
-            background: var(--gold);
+            content: ''; position: absolute; bottom: 8px; left: 0; right: 0; height: 4px; background: var(--gold);
         }
 
         h1 {
@@ -193,18 +255,11 @@
         }
 
         .subtitle {
-            font-size: 1rem;
-            opacity: 0.95;
-            font-weight: 500;
-            color: rgba(255,255,255,0.9);
+            font-size: 1rem; opacity: 0.95; font-weight: 500; color: rgba(255,255,255,0.9);
         }
 
         .container { 
-            max-width: 500px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
-            position: relative; 
-            z-index: 10; 
+            max-width: 500px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; 
         }
 
         /* ===================================
@@ -222,40 +277,21 @@
         }
 
         .step-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                var(--red) 0%, var(--yellow) 25%, var(--blue) 50%, var(--yellow) 75%, var(--red) 100%);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--red) 0%, var(--yellow) 25%, var(--blue) 50%, var(--yellow) 75%, var(--red) 100%);
         }
 
-        .step-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
+        .step-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 
         .step-num {
             background: var(--gradient-header);
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: white;
+            width: 34px; height: 34px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.95rem; color: white;
             box-shadow: 0 2px 8px rgba(199, 62, 58, 0.3);
         }
 
-        .step-title {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
+        .step-title { font-family: 'Nanum Myeongjo', serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
 
         /* ===================================
            성별 선택 버튼
@@ -263,26 +299,17 @@
         .gender-selector { display: flex; gap: 10px; }
 
         .gender-btn {
-            flex: 1;
-            padding: 16px 8px;
-            background: var(--cream);
-            border: 2px solid var(--warm-beige);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--text-secondary);
-            font-family: 'Noto Sans KR', sans-serif;
+            flex: 1; padding: 16px 8px; background: var(--cream);
+            border: 2px solid var(--warm-beige); border-radius: 12px;
+            cursor: pointer; transition: all 0.3s;
+            color: var(--text-secondary); font-family: 'Noto Sans KR', sans-serif;
         }
 
-        .gender-btn:hover {
-            border-color: var(--gold);
-            background: rgba(232, 184, 48, 0.1);
-        }
+        .gender-btn:hover { border-color: var(--gold); background: rgba(232, 184, 48, 0.1); }
 
         .gender-btn.active {
             background: linear-gradient(135deg, rgba(199, 62, 58, 0.1) 0%, rgba(232, 184, 48, 0.15) 100%);
-            border-color: var(--red);
-            color: var(--red);
+            border-color: var(--red); color: var(--red);
             box-shadow: 0 4px 12px rgba(199, 62, 58, 0.15);
         }
 
@@ -292,305 +319,133 @@
         /* ===================================
            12띠 그리드
         =================================== */
-        .zodiac-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
+        .zodiac-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 
         .zodiac-item {
-            background: var(--cream);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            padding: 14px 6px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
+            background: var(--cream); border: 2px solid transparent; border-radius: 12px;
+            padding: 14px 6px; text-align: center; cursor: pointer;
+            transition: all 0.3s; position: relative;
         }
 
         .zodiac-item:hover {
-            background: rgba(232, 184, 48, 0.1);
-            border-color: var(--gold);
-            transform: translateY(-2px);
+            background: rgba(232, 184, 48, 0.1); border-color: var(--gold); transform: translateY(-2px);
         }
 
         .zodiac-item.selected {
             background: linear-gradient(135deg, rgba(199, 62, 58, 0.12) 0%, rgba(232, 184, 48, 0.18) 100%);
-            border-color: var(--red);
-            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.2);
+            border-color: var(--red); box-shadow: 0 4px 15px rgba(199, 62, 58, 0.2);
         }
 
         .zodiac-item.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 4px; right: 6px;
-            font-size: 0.7rem;
-            color: var(--red);
-            font-weight: bold;
+            content: '✓'; position: absolute; top: 4px; right: 6px;
+            font-size: 0.7rem; color: var(--red); font-weight: bold;
         }
 
-        /* 🆕 12띠 아이콘 이미지 스타일 */
-        .zodiac-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 6px;
-        }
+        .zodiac-icon { display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
 
         .zodiac-icon img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+            transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .zodiac-item:hover .zodiac-icon img {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.2);
+            transform: scale(1.1); box-shadow: 0 4px 15px rgba(199, 62, 58, 0.2);
         }
 
         .zodiac-item.selected .zodiac-icon img {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3);
-            border: 3px solid var(--red);
+            transform: scale(1.05); box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3); border: 3px solid var(--red);
         }
 
-        .zodiac-name { 
-            font-size: 0.78rem; 
-            font-weight: 600; 
-            color: var(--text-secondary); 
-        }
-        .zodiac-item.selected .zodiac-name { 
-            color: var(--red); 
-            font-weight: 700;
-        }
+        .zodiac-name { font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
+        .zodiac-item.selected .zodiac-name { color: var(--red); font-weight: 700; }
 
         /* ===================================
            랜덤 명언 박스
         =================================== */
         .wisdom-box {
             background: linear-gradient(135deg, rgba(199, 62, 58, 0.08) 0%, rgba(232, 184, 48, 0.12) 100%);
-            border: 1px solid rgba(199, 62, 58, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(199, 62, 58, 0.2); border-radius: 16px;
+            padding: 20px; margin: 20px 0; text-align: center; position: relative; overflow: hidden;
         }
 
         .wisdom-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--red), var(--yellow), var(--red));
         }
 
-        .wisdom-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-            animation: pulse 2s ease-in-out infinite;
-        }
+        .wisdom-icon { font-size: 2rem; margin-bottom: 10px; display: block; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .wisdom-text {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-            line-height: 1.6;
-            font-weight: 500;
-        }
+        .wisdom-text { font-family: 'Nanum Myeongjo', serif; font-size: 1.05rem; color: var(--text-primary); line-height: 1.6; font-weight: 500; }
 
         .wisdom-refresh {
-            margin-top: 12px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
+            margin-top: 12px; background: none; border: none; color: var(--text-muted);
+            font-size: 0.8rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;
         }
-
-        .wisdom-refresh:hover {
-            color: var(--red);
-        }
-
-        .wisdom-refresh i {
-            transition: transform 0.3s;
-        }
-
-        .wisdom-refresh:hover i {
-            transform: rotate(180deg);
-        }
+        .wisdom-refresh:hover { color: var(--red); }
+        .wisdom-refresh:hover i { transform: rotate(180deg); }
 
         /* ===================================
            띠 찾기 버튼
         =================================== */
         .find-zodiac-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            margin-top: 15px;
-            padding: 14px 20px;
+            display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+            margin-top: 15px; padding: 14px 20px;
             background: linear-gradient(135deg, rgba(46, 107, 138, 0.1) 0%, rgba(232, 184, 48, 0.15) 100%);
-            border: 2px dashed var(--blue);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            border: 2px dashed var(--blue); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; text-decoration: none;
         }
-
         .find-zodiac-btn:hover {
             background: linear-gradient(135deg, rgba(46, 107, 138, 0.15) 0%, rgba(232, 184, 48, 0.2) 100%);
-            border-style: solid;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(46, 107, 138, 0.2);
+            border-style: solid; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(46, 107, 138, 0.2);
         }
-
-        .find-zodiac-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            box-shadow: 0 2px 8px rgba(212, 168, 75, 0.3);
-        }
-
-        .find-zodiac-content {
-            text-align: left;
-        }
-
-        .find-zodiac-title {
-            font-weight: 700;
-            color: var(--blue);
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-
-        .find-zodiac-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .find-zodiac-arrow {
-            margin-left: auto;
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
+        .find-zodiac-icon { width: 40px; height: 40px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(212, 168, 75, 0.3); }
+        .find-zodiac-content { text-align: left; }
+        .find-zodiac-title { font-weight: 700; color: var(--blue); font-size: 0.95rem; margin-bottom: 2px; }
+        .find-zodiac-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .find-zodiac-arrow { margin-left: auto; color: var(--gold); font-size: 1.2rem; }
 
         /* ===================================
            광고 스타일
         =================================== */
-        .ad-container {
-            margin: 20px 0;
-            text-align: center;
-            background: rgba(255,255,255,0.8);
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px solid var(--warm-beige);
-        }
-
-        .ad-label {
-            font-size: 0.7em;
-            color: #aaa;
-            margin-bottom: 5px;
-        }
+        .ad-container { margin: 20px 0; text-align: center; background: rgba(255,255,255,0.8); border-radius: 12px; padding: 10px; border: 1px solid var(--warm-beige); }
+        .ad-label { font-size: 0.7em; color: #aaa; margin-bottom: 5px; }
 
         /* ===================================
            하단 액션바
         =================================== */
         .action-area {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(253, 248, 240, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 16px 20px;
-            border-top: 1px solid var(--warm-beige);
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            z-index: 100;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(253, 248, 240, 0.98); backdrop-filter: blur(20px);
+            padding: 16px 20px; border-top: 1px solid var(--warm-beige);
+            display: flex; gap: 12px; justify-content: center; z-index: 100;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
         }
 
         .btn-submit {
-            flex: 1;
-            max-width: 400px;
-            background: var(--cream);
-            color: var(--text-muted);
-            border: 2px solid var(--warm-beige);
-            padding: 16px 24px;
-            border-radius: 50px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: not-allowed;
-            transition: all 0.3s;
+            flex: 1; max-width: 400px; background: var(--cream); color: var(--text-muted);
+            border: 2px solid var(--warm-beige); padding: 16px 24px; border-radius: 50px;
+            font-size: 1.05rem; font-weight: 700; cursor: not-allowed; transition: all 0.3s;
             font-family: 'Noto Sans KR', sans-serif;
         }
 
         .btn-submit.active {
-            background: var(--gradient-header);
-            color: white;
-            border-color: transparent;
-            cursor: pointer;
-            box-shadow: var(--glow-red);
+            background: var(--gradient-header); color: white; border-color: transparent;
+            cursor: pointer; box-shadow: var(--glow-red);
         }
 
-        .btn-submit.active:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(199, 62, 58, 0.4);
-        }
+        .btn-submit.active:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(199, 62, 58, 0.4); }
 
         /* ===================================
            공유 섹션
         =================================== */
-        .share-section-home {
-            text-align: center;
-            margin: 30px 0 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--warm-beige);
-        }
-
-        .share-title {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-        }
-
+        .share-section-home { text-align: center; margin: 30px 0 20px; padding-top: 20px; border-top: 1px solid var(--warm-beige); }
+        .share-title { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; }
         .share-buttons { display: flex; gap: 12px; justify-content: center; }
-
         .share-btn {
-            width: 45px; height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-secondary);
-            border: 1px solid var(--warm-beige);
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
+            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: var(--text-secondary); border: 1px solid var(--warm-beige); background: white;
+            cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem;
         }
-
         .share-btn:hover { transform: translateY(-3px) scale(1.05); }
         .share-facebook:hover { background: #1877F2; border-color: #1877F2; color: white; }
         .share-line:hover { background: #06C755; border-color: #06C755; color: white; }
@@ -598,142 +453,52 @@
         .share-copy:hover { background: var(--red); border-color: var(--red); color: white; }
 
         .copy-toast {
-            position: fixed;
-            bottom: 100px; left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: var(--blue);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: bold;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 1000;
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--blue); color: white; padding: 12px 24px; border-radius: 25px;
+            font-weight: bold; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000;
         }
-
-        .copy-toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-
-       
-
+        .copy-toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
         /* ===================================
            푸터
         =================================== */
-        .main-footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
+        .main-footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem; }
         .main-footer a { color: var(--red); text-decoration: none; }
 
         /* ===================================
            모달
         =================================== */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(45, 45, 45, 0.7);
-            z-index: 200;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(45, 45, 45, 0.7); z-index: 200; justify-content: center; align-items: center; backdrop-filter: blur(5px);
         }
-
         .modal-content {
-            background: linear-gradient(145deg, var(--cream), white);
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 350px;
-            text-align: center;
-            border: 2px solid var(--gold);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            position: relative;
+            background: linear-gradient(145deg, var(--cream), white); padding: 30px; border-radius: 20px;
+            width: 90%; max-width: 350px; text-align: center; border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); position: relative;
         }
-
         .modal-content::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 5px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
             background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue), var(--yellow), var(--red));
             border-radius: 20px 20px 0 0;
         }
-
-        .modal-content h3 {
-            font-family: 'Nanum Myeongjo', serif;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            font-size: 1.3rem;
-        }
-
-        .modal-content p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-        }
-
+        .modal-content h3 { font-family: 'Nanum Myeongjo', serif; margin-bottom: 8px; color: var(--text-primary); font-size: 1.3rem; }
+        .modal-content p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px; }
         .modal-content select {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid var(--warm-beige);
-            background: white;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: 'Noto Sans KR', sans-serif;
-            width: 100%;
+            flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--warm-beige);
+            background: white; color: var(--text-primary); font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; width: 100%;
         }
-
-        .modal-content select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
+        .modal-content select:focus { outline: none; border-color: var(--gold); }
         .modal-btn-primary {
-            width: 100%;
-            padding: 14px;
-            border-radius: 50px;
-            border: none;
-            background: var(--gradient-header);
-            color: white;
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3);
-            transition: all 0.3s;
+            width: 100%; padding: 14px; border-radius: 50px; border: none; background: var(--gradient-header);
+            color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 62, 58, 0.3); transition: all 0.3s;
         }
-
-        .modal-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(199, 62, 58, 0.4);
-        }
-
+        .modal-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(199, 62, 58, 0.4); }
         .modal-btn-close {
-            margin-top: 15px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-decoration: underline;
-            cursor: pointer;
+            margin-top: 15px; background: none; border: none; color: var(--text-muted);
+            font-size: 0.9rem; text-decoration: underline; cursor: pointer;
         }
-
-        #searchResult {
-            margin-top: 20px;
-            min-height: 30px;
-            font-weight: bold;
-            color: var(--red);
-        }
+        #searchResult { margin-top: 20px; min-height: 30px; font-weight: bold; color: var(--red); }
 
         /* ===================================
            반응형
@@ -759,12 +524,7 @@
     <aside class="side-rail">
         <div class="side-rail-inner">
             <div class="side-rail-label">Advertisement</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3198582468837090"
-                 data-ad-slot="5807274060"
-                 data-ad-format="vertical"
-                 data-full-width-responsive="false"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="vertical" data-full-width-responsive="false"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </aside>
@@ -772,93 +532,68 @@
     <!-- [중앙] 메인 콘텐츠 -->
     <div class="main-content">
 
+        <!-- 🌍 다국어 번역 버튼 영역 (언어 기억 기능 포함) -->
+        <div class="translation-flags">
+            <a href="javascript:void(0)" onclick="triggerTranslate('ko')" class="flag-btn" title="한국어"><img src="https://flagcdn.com/w80/kr.png" alt="KR"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('en')" class="flag-btn" title="English"><img src="https://flagcdn.com/w80/us.png" alt="US"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('zh-CN')" class="flag-btn" title="中文"><img src="https://flagcdn.com/w80/cn.png" alt="CN"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('ja')" class="flag-btn" title="日本語"><img src="https://flagcdn.com/w80/jp.png" alt="JP"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('th')" class="flag-btn" title="ไทย"><img src="https://flagcdn.com/w80/th.png" alt="TH"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('vi')" class="flag-btn" title="Tiếng Việt"><img src="https://flagcdn.com/w80/vn.png" alt="VN"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('id')" class="flag-btn" title="Indonesia"><img src="https://flagcdn.com/w80/id.png" alt="ID"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('es')" class="flag-btn" title="Español"><img src="https://flagcdn.com/w80/es.png" alt="ES"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('fr')" class="flag-btn" title="Français"><img src="https://flagcdn.com/w80/fr.png" alt="FR"></a>
+        </div>
+        
+        <!-- 구글 번역 숨겨진 위젯 -->
+        <div id="google_translate_element" style="display:none;"></div>
+
         <header>
             <h1>💕 띠별 사랑 궁합</h1>
             <p class="subtitle">12띠로 풀어보는 천생연분의 인연</p>
         </header>
 
         <div class="container" style="padding: 0; margin-top: 20px;">
-
             <!-- 랜덤 운세 명언 박스 -->
             <div class="wisdom-box">
                 <span class="wisdom-icon" id="wisdomIcon">🔮</span>
                 <p class="wisdom-text" id="wisdomText">오늘의 인연 이야기를 불러오는 중...</p>
-                <button class="wisdom-refresh" onclick="showRandomWisdom()">
-                    <i class="fas fa-sync-alt"></i> 다른 명언 보기
-                </button>
+                <button class="wisdom-refresh" onclick="showRandomWisdom()"><i class="fas fa-sync-alt"></i> 다른 명언 보기</button>
             </div>
 
             <!-- Step 1: 커플 유형 -->
             <div class="step-card">
-                <div class="step-header">
-                    <span class="step-num">1</span>
-                    <span class="step-title">커플 유형 선택</span>
-                </div>
+                <div class="step-header"><span class="step-num">1</span><span class="step-title">커플 유형 선택</span></div>
                 <div class="gender-selector">
-                    <button class="gender-btn active" onclick="selectGender('mf')" aria-label="남녀 커플">
-                        <span class="gender-icon">👫</span><span class="gender-text">남녀 커플</span>
-                    </button>
-                    <button class="gender-btn" onclick="selectGender('mm')" aria-label="남남 커플">
-                        <span class="gender-icon">👬</span><span class="gender-text">남남 커플</span>
-                    </button>
-                    <button class="gender-btn" onclick="selectGender('ff')" aria-label="여여 커플">
-                        <span class="gender-icon">👭</span><span class="gender-text">여여 커플</span>
-                    </button>
+                    <button class="gender-btn active" onclick="selectGender('mf')" aria-label="남녀 커플"><span class="gender-icon">👫</span><span class="gender-text">남녀 커플</span></button>
+                    <button class="gender-btn" onclick="selectGender('mm')" aria-label="남남 커플"><span class="gender-icon">👬</span><span class="gender-text">남남 커플</span></button>
+                    <button class="gender-btn" onclick="selectGender('ff')" aria-label="여여 커플"><span class="gender-icon">👭</span><span class="gender-text">여여 커플</span></button>
                 </div>
             </div>
 
             <!-- 중간 광고 1 -->
             <div class="ad-container">
                 <div class="ad-label">Sponsored</div>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3198582468837090"
-                     data-ad-slot="5807274060"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
             <!-- Step 2: 내 띠 -->
             <div class="step-card">
-                <div class="step-header">
-                    <span class="step-num">2</span>
-                    <span class="step-title">내 띠는?</span>
-                </div>
+                <div class="step-header"><span class="step-num">2</span><span class="step-title">내 띠는?</span></div>
                 <div class="zodiac-grid" id="my-grid"></div>
-                
-                <!-- 띠 찾기 버튼 -->
                 <button class="find-zodiac-btn" onclick="openModal()">
                     <div class="find-zodiac-icon">📅</div>
-                    <div class="find-zodiac-content">
-                        <div class="find-zodiac-title">내 띠를 모르겠다면?</div>
-                        <div class="find-zodiac-desc">생년월일로 간편하게 확인하세요</div>
-                    </div>
+                    <div class="find-zodiac-content"><div class="find-zodiac-title">내 띠를 모르겠다면?</div><div class="find-zodiac-desc">생년월일로 간편하게 확인하세요</div></div>
                     <i class="fas fa-chevron-right find-zodiac-arrow"></i>
                 </button>
             </div>
 
-            <!-- 중간 광고 2 -->
-            <div class="ad-container">
-                <div class="ad-label">Sponsored</div>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3198582468837090"
-                     data-ad-slot="5807274060"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-
             <!-- Step 3: 상대 띠 -->
             <div class="step-card">
-                <div class="step-header">
-                    <span class="step-num">3</span>
-                    <span class="step-title">상대방 띠는?</span>
-                </div>
+                <div class="step-header"><span class="step-num">3</span><span class="step-title">상대방 띠는?</span></div>
                 <div class="zodiac-grid" id="partner-grid"></div>
             </div>
-
         </div>
 
         <!-- 공유 섹션 -->
@@ -876,39 +611,148 @@
         <!-- 하단 광고 -->
         <div class="ad-container">
             <div class="ad-label">Sponsored</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3198582468837090"
-                 data-ad-slot="5807274060"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
+
+        <!-- 12띠 성격 분석 바로가기 섹션 (메인 콘텐츠 내부로 이동 완료 ✅) -->
+        <section style="max-width: 800px; margin: 40px auto; padding: 25px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <h2 style="color: #333; margin-bottom: 25px; font-family: 'Nanum Myeongjo', serif;">📜 띠별 성격 완벽 분석</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px;">
+                <!-- 1. 쥐띠 -->
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+                    <div style="font-size: 2em; margin-bottom: 5px;">🐭</div>
+                    <div style="font-weight: bold; margin-bottom: 5px; color: #555;">쥐띠</div>
+                    <div style="font-size: 0.9em;"><a href="traits/rat-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> <a href="traits/rat-f.html" style="color: #C73E3A; text-decoration: none;">여성</a></div>
+                </div>
+                <!-- (나머지 띠들은 코드 간결화를 위해 생략했지만 원본 그대로 두시면 됩니다) -->
+                 <!-- 2. 소띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐮</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">소띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/ox-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/ox-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 3. 호랑이띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐯</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">호랑이띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/tiger-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/tiger-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 4. 토끼띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐰</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">토끼띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/rabbit-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/rabbit-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 5. 용띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐲</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">용띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/dragon-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/dragon-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 6. 뱀띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐍</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">뱀띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/snake-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/snake-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 7. 말띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐴</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">말띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/horse-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/horse-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 8. 양띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐐</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">양띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/goat-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/goat-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 9. 원숭이띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐵</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">원숭이띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/monkey-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/monkey-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 10. 닭띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐔</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">닭띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/rooster-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/rooster-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 11. 개띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐶</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">개띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/dog-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/dog-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+
+        <!-- 12. 돼지띠 -->
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="font-size: 2em; margin-bottom: 5px;">🐷</div>
+            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">돼지띠</div>
+            <div style="font-size: 0.9em;">
+                <a href="traits/pig-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
+                <a href="traits/pig-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
+            </div>
+        </div>
+            </div>
+        </section>
 
         <footer class="main-footer">
             <p>© 2025 띠별 사랑 궁합 | 천생연분을 찾아서</p>
             <p style="margin-top: 5px;">AI가 전해주는 정교한 띠별 사랑 궁합 ❤️</p>
         </footer>
 
-        <!-- 하단 액션바 -->
         <div class="action-area">
-            <button id="btn-match" class="btn-submit" onclick="goToResult()">
-                나와 상대의 띠를 골라주세요 ✨
-            </button>
+            <button id="btn-match" class="btn-submit" onclick="goToResult()">나와 상대의 띠를 골라주세요 ✨</button>
         </div>
-
     </div>
 
     <!-- [오른쪽] 사이드 레일 광고 -->
     <aside class="side-rail">
         <div class="side-rail-inner">
             <div class="side-rail-label">Advertisement</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3198582468837090"
-                 data-ad-slot="5807274060"
-                 data-ad-format="vertical"
-                 data-full-width-responsive="false"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3198582468837090" data-ad-slot="5807274060" data-ad-format="vertical" data-full-width-responsive="false"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </aside>
@@ -919,6 +763,7 @@
 <div id="zodiacModal" class="modal-overlay">
     <div class="modal-content">
         <h3>📅 내 띠 찾아보기</h3>
+        <!-- ... (모달 내용은 그대로) ... -->
         <p>양력 생년월일을 입력하면 자동으로 띠를 알려드려요.</p>
         <div style="display:flex; gap:10px; margin-bottom:15px;">
             <select id="bYear"><option value="">연도</option></select>
@@ -938,6 +783,57 @@
 
 <script>
     // ===================================
+    // 🌍 번역 유지 기능이 추가된 자바스크립트
+    // ===================================
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'ko',
+            includedLanguages: 'ko,en,zh-CN,ja,th,vi,id,es,fr',
+            autoDisplay: false
+        }, 'google_translate_element');
+
+        // 🔥 저장된 언어가 있으면 자동 적용
+        setTimeout(function() {
+            const savedLang = localStorage.getItem('selectedLang');
+            if (savedLang && savedLang !== 'ko') {
+                triggerTranslate(savedLang);
+            }
+        }, 500);
+        // 🔥 [추가됨] 상단 배너 강제 삭제 및 위치 복구 (1초마다 감시)
+        setInterval(function() {
+            // 1. body의 top 스타일 강제 초기화
+            if (document.body.style.top !== "0px") {
+                document.body.style.top = "0px";
+            }
+            // 2. 상단 아이프레임 삭제
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }, 1000);
+        }
+
+        function triggerTranslate(langCode) {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = langCode;
+            select.dispatchEvent(new Event('change'));
+            localStorage.setItem('selectedLang', langCode); // 언어 저장
+        }
+    }
+
+    // 구글 스크립트 로드
+    (function() {
+        var gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.async = true;
+        gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(gtScript);
+    })();
+
+    // (나머지 기존 스크립트: wisdomList, calculateZodiac 등등은 아래에 그대로 두시면 됩니다)
+    // ...
+     // ===================================
     // 100개 랜덤 운세 명언
     // ===================================
     const wisdomList = [
@@ -1153,20 +1049,24 @@
     }
 
     function goToResult() {
-        if (myZodiac && partnerZodiac) {
-            window.location.href = `posts/${myZodiac}-${partnerZodiac}-${selectedGender}.html`;
-        }
+    if (myZodiac && partnerZodiac && selectedGender) {
+        // 절대 경로로 이동
+        window.location.href = `/posts/${myZodiac}-${partnerZodiac}-${selectedGender}.html`;
+    } else if (!myZodiac) {
+        alert('내 띠를 선택해주세요!');
+    } else if (!partnerZodiac) {
+        alert('상대방 띠를 선택해주세요!');
     }
+}
 
-    // 링크 복사
-    function copyLink() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            const toast = document.getElementById('copy-toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        });
-    }
-
+// 링크 복사
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    });
+}
     // 모달 로직
     function openModal() { document.getElementById('zodiacModal').style.display = 'flex'; }
     function closeModal() { document.getElementById('zodiacModal').style.display = 'none'; document.getElementById('searchResult').innerHTML = ''; }
@@ -1239,134 +1139,5 @@
         showRandomWisdom();
     };
 </script>
-     <!-- 12띠 성격 분석 바로가기 섹션 -->
-        <section style="max-width: 800px; margin: 40px auto; padding: 25px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <h2 style="color: #333; margin-bottom: 25px; font-family: 'Nanum Myeongjo', serif;">📜 띠별 성격 완벽 분석</h2>
-    
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px;">
-        
-        <!-- 1. 쥐띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐭</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">쥐띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/rat-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/rat-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 2. 소띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐮</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">소띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/ox-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/ox-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 3. 호랑이띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐯</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">호랑이띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/tiger-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/tiger-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 4. 토끼띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐰</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">토끼띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/rabbit-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/rabbit-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 5. 용띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐲</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">용띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/dragon-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/dragon-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 6. 뱀띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐍</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">뱀띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/snake-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/snake-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 7. 말띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐴</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">말띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/horse-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/horse-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 8. 양띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐐</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">양띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/goat-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/goat-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 9. 원숭이띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐵</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">원숭이띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/monkey-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/monkey-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 10. 닭띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐔</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">닭띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/rooster-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/rooster-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 11. 개띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐶</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">개띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/dog-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/dog-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        <!-- 12. 돼지띠 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eee;">
-            <div style="font-size: 2em; margin-bottom: 5px;">🐷</div>
-            <div style="font-weight: bold; margin-bottom: 5px; color: #555;">돼지띠</div>
-            <div style="font-size: 0.9em;">
-                <a href="traits/pig-m.html" style="color: #2E6B8A; text-decoration: none;">남성</a> <span style="color:#ddd">|</span> 
-                <a href="traits/pig-f.html" style="color: #C73E3A; text-decoration: none;">여성</a>
-            </div>
-        </div>
-
-        </div>
-        </section>
-
 </body>
 </html>
