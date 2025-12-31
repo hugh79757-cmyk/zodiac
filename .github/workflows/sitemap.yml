@@ -1,0 +1,41 @@
+name: Generate Sitemap
+
+on:
+  # 코드를 push(업로드) 할 때마다 실행
+  push:
+    branches: [ "main", "master" ]
+  
+  # 수동 실행 버튼 추가
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 내 코드 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. 파이썬 설치
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 3. 사이트맵 생성 스크립트 실행
+      - name: Run sitemap script
+        run: python sitemap_pro.py
+
+      # 4. 만들어진 sitemap.xml을 깃허브에 저장(Commit & Push)
+      - name: Commit and Push sitemap
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          # 변경사항이 있을 때만 커밋 (에러 방지)
+          git commit -m "🤖 Auto-generate sitemap.xml" || echo "No changes to sitemap"
+          git push
