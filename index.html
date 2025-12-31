@@ -16,17 +16,19 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3198582468837090" crossorigin="anonymous"></script>
 
     <style>
-        /* ===================================
-           🌍 다국어 번역 버튼 스타일
+                /* ===================================
+           🌍 다국어 번역 버튼 스타일 (수정됨)
         =================================== */
         .translation-flags {
             display: flex;
             justify-content: center;
             gap: 12px;
-            padding: 20px 0 10px; /* 상단 여백 확보 */
+            /* 👇 상단 여백을 넉넉히 줘서 구글 바가 생겨도 안 가려지게 함 */
+            padding: 20px 0 10px; 
             flex-wrap: wrap;
             position: relative;
-            z-index: 10001; /* 구글 위젯보다 위에 오도록 */
+            /* 👇 Z-index를 무식하게 높여서 무조건 맨 위에 뜨게 함 */
+            z-index: 2147483647; 
         }
 
         .flag-btn {
@@ -40,6 +42,7 @@
             transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
+            background: white; /* 배경색 추가 */
         }
 
         .flag-btn img {
@@ -56,17 +59,26 @@
             z-index: 10;
         }
 
-        /* 구글 번역 상단 배너 강제 제거 (디자인 보호) */
+        /* ===================================
+           🚫 구글 번역 상단 바 완벽 제거 (강력 버전)
+           =================================== */
+        /* 1. 상단 프레임(흰색 바) 숨김 */
+        iframe.goog-te-banner-frame { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        
+        /* 2. 바디가 아래로 밀리는 것 강제 복구 */
         body { 
-            top: 0 !important; 
+            top: 0px !important; 
             position: static !important; 
             min-height: 100vh !important;
         }
-        .goog-te-banner-frame { display: none !important; visibility: hidden !important; height: 0 !important; }
+        
+        /* 3. 기타 구글 요소 숨김 */
         .goog-tooltip { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
         
-        /* 모바일 최적화: 가로 스크롤 (화면 덜 차지하게) */
+        /* 4. 모바일 최적화 */
         @media (max-width: 480px) {
             .translation-flags {
                 justify-content: flex-start;
@@ -74,13 +86,14 @@
                 padding-left: 20px;
                 padding-right: 20px;
                 white-space: nowrap;
-                flex-wrap: nowrap; /* 줄바꿈 방지 */
+                flex-wrap: nowrap; 
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
             }
             .translation-flags::-webkit-scrollbar { display: none; }
             .flag-btn { flex: 0 0 auto; }
         }
+
 
         /* ===================================
            CSS 변수 - 오방색 테마
