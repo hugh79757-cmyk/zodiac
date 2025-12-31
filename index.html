@@ -799,9 +799,21 @@
                 triggerTranslate(savedLang);
             }
         }, 500);
-    }
+        // 🔥 [추가됨] 상단 배너 강제 삭제 및 위치 복구 (1초마다 감시)
+        setInterval(function() {
+            // 1. body의 top 스타일 강제 초기화
+            if (document.body.style.top !== "0px") {
+                document.body.style.top = "0px";
+            }
+            // 2. 상단 아이프레임 삭제
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }, 1000);
+        }
 
-    function triggerTranslate(langCode) {
+        function triggerTranslate(langCode) {
         const select = document.querySelector('.goog-te-combo');
         if (select) {
             select.value = langCode;
