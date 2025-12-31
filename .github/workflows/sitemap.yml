@@ -28,7 +28,7 @@ jobs:
 
       # 3. 사이트맵 생성 스크립트 실행
       - name: Run sitemap script
-        run: python sitemap_pro.py
+        run: python sitemap.py
 
       # 4. 만들어진 sitemap.xml을 깃허브에 저장(Commit & Push)
       - name: Commit and Push sitemap
