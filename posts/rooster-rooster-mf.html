@@ -486,8 +486,90 @@
             .score-number { font-size: 2.3rem; }
         }
     </style>
+
+    <style>
+        /* 🚨 Git 충돌 텍스트 숨김 (혹시 남아있을 경우 대비) */
+        body > *:first-child { white-space: normal; }
+
+        /* 1. 이미지 스타일 (꽉 차게 + 테두리) */
+        header img, .result-header img {
+            visibility: visible !important;
+            display: inline-block !important;
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.9);
+            object-fit: cover;
+            margin: 0 5px;
+            background-color: #fff;
+            
+            /* Alt 텍스트 숨김 */
+            color: transparent !important; 
+            text-indent: -9999px !important;
+        }
+
+        /* 2. 텍스트 이모지(🐭 등) 및 제목 텍스트 숨김 */
+        header .zodiac-emoji, 
+        .result-header span:not(.heart-icon):not(.step-num) {
+            display: none !important;
+        }
+
+        /* 3. 깨진 이미지 숨김 */
+        img[src=""], img:not([src]) { opacity: 0 !important; visibility: hidden !important; }
+
+        /* 4. 하트 아이콘 */
+        .heart-icon, .heart {
+            display: inline-block !important;
+            font-size: 3rem !important;
+            color: #2E6B8A;
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+
+        /* 5. 구글 번역바 제거 */
+        body { top: 0 !important; position: static !important; min-height: 100vh !important; }
+        .goog-te-banner-frame { display: none !important; }
+
+        /* 6. 국기 버튼 스타일 */
+        .translation-flags {
+            display: flex; justify-content: center; gap: 12px;
+            padding: 20px 0 10px; flex-wrap: wrap; position: relative; z-index: 10001;
+        }
+        .flag-btn {
+            display: block; width: 36px; height: 36px; border-radius: 50%; overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.6); box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s; cursor: pointer; background: white;
+        }
+        .flag-btn img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
+        
+        @media (max-width: 480px) {
+            .translation-flags {
+                justify-content: flex-start; overflow-x: auto;
+                padding-left: 20px; padding-right: 20px; white-space: nowrap; flex-wrap: nowrap;
+                scrollbar-width: none;
+            }
+            .translation-flags::-webkit-scrollbar { display: none; }
+            .flag-btn { flex: 0 0 auto; }
+        }
+    </style>
+
 </head>
 <body>
+
+<!-- 🌍 국기 버튼 (복구됨) -->
+<div class="translation-flags" style="display:flex; justify-content:center; gap:10px; padding:15px 0; z-index:10001; position:relative;">
+    <a href="javascript:void(0)" onclick="triggerTranslate('ko')" class="flag-btn"><img src="https://flagcdn.com/w80/kr.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('en')" class="flag-btn"><img src="https://flagcdn.com/w80/us.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('zh-CN')" class="flag-btn"><img src="https://flagcdn.com/w80/cn.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('ja')" class="flag-btn"><img src="https://flagcdn.com/w80/jp.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('th')" class="flag-btn"><img src="https://flagcdn.com/w80/th.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('vi')" class="flag-btn"><img src="https://flagcdn.com/w80/vn.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('id')" class="flag-btn"><img src="https://flagcdn.com/w80/id.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('es')" class="flag-btn"><img src="https://flagcdn.com/w80/es.png" style="width:100%;height:100%;object-fit:cover;"></a>
+    <a href="javascript:void(0)" onclick="triggerTranslate('fr')" class="flag-btn"><img src="https://flagcdn.com/w80/fr.png" style="width:100%;height:100%;object-fit:cover;"></a>
+</div>
+<div id="google_translate_element" style="display:none;"></div>
+
 
 <div class="pattern-bg"></div>
 
@@ -507,9 +589,9 @@
 
         <header>
             <div class="zodiac-pair">
-                <img src="../images/zodiac/ch.png" alt="닭띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">🐔
+                <img src="/images/zodiac/ch.png" alt="닭띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">
                 <span style="margin: 0 5px;">💕</span>
-                <img src="../images/zodiac/ch.png" alt="닭띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">🐔
+                <img src="/images/zodiac/ch.png" alt="닭띠" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">
             </div>
             <h1 class="couple-title">닭띠 & 닭띠</h1>
             <p class="couple-type">👫 남녀 커플</p>
@@ -661,6 +743,44 @@
         }
     }
 </script>
+
+
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'ko',
+            includedLanguages: 'ko,en,zh-CN,ja,th,vi,id,es,fr',
+            autoDisplay: false
+        }, 'google_translate_element');
+
+        setTimeout(function() {
+            const savedLang = localStorage.getItem('selectedLang');
+            if (savedLang && savedLang !== 'ko') { triggerTranslate(savedLang); }
+        }, 500);
+
+        setInterval(function() {
+            if (document.body.style.top !== "0px") document.body.style.top = "0px";
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) banner.style.display = 'none';
+        }, 1000);
+    }
+
+    function triggerTranslate(langCode) {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = langCode;
+            select.dispatchEvent(new Event('change'));
+            localStorage.setItem('selectedLang', langCode);
+        }
+    }
+
+    (function() {
+        var gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript'; gtScript.async = true;
+        gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(gtScript);
+    })();
+    </script>
 
 </body>
 </html>
