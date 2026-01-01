@@ -538,7 +538,7 @@
         <!-- 🌍 다국어 번역 버튼 영역 (언어 기억 기능 포함) -->
         <div class="translation-flags">
             <a href="javascript:void(0)" onclick="triggerTranslate('ko')" class="flag-btn" title="한국어"><img src="https://flagcdn.com/w80/kr.png" alt="KR"></a>
-            <a href="javascript:void(0)" onclick="triggerTranslate('en')" class="flag-btn" title="English"><img src="https://flagcdn.com/w80/us.png" alt="US"></a>
+            <a href="javascript:void(0)" onclick="triggerTranslate('en')" class="flag-btn" title="English"><img src="https://flagcdn.com/w80/gb.png" alt="UK"></a>
             <a href="javascript:void(0)" onclick="triggerTranslate('zh-CN')" class="flag-btn" title="中文"><img src="https://flagcdn.com/w80/cn.png" alt="CN"></a>
             <a href="javascript:void(0)" onclick="triggerTranslate('ja')" class="flag-btn" title="日本語"><img src="https://flagcdn.com/w80/jp.png" alt="JP"></a>
             <a href="javascript:void(0)" onclick="triggerTranslate('th')" class="flag-btn" title="ไทย"><img src="https://flagcdn.com/w80/th.png" alt="TH"></a>
@@ -1077,58 +1077,137 @@ function copyLink() {
 
     const lunarNewYears = {1950:217,1951:206,1952:127,1953:214,1954:203,1955:124,1956:212,1957:131,1958:218,1959:208,1960:128,1961:215,1962:205,1963:125,1964:213,1965:202,1966:121,1967:209,1968:130,1969:217,1970:206,1971:127,1972:215,1973:203,1974:123,1975:211,1976:131,1977:218,1978:207,1979:128,1980:216,1981:205,1982:125,1983:213,1984:202,1985:220,1986:209,1987:129,1988:217,1989:206,1990:127,1991:215,1992:204,1993:123,1994:210,1995:131,1996:219,1997:207,1998:128,1999:216,2000:205,2001:124,2002:212,2003:201,2004:122,2005:209,2006:129,2007:218,2008:207,2009:126,2010:214,2011:203,2012:123,2013:210,2014:131,2015:219,2016:208,2017:128,2018:216,2019:205,2020:125,2021:212,2022:201,2023:122,2024:210,2025:129,2026:217,2027:206,2028:126,2029:213,2030:203};
     const zodiacNamesKo = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
+    // 천간 (10개)
+const heavenlyStems = [
+    { name: '갑', hanja: '甲', element: '목(木)', elementEn: 'Wood' },
+    { name: '을', hanja: '乙', element: '목(木)', elementEn: 'Wood' },
+    { name: '병', hanja: '丙', element: '화(火)', elementEn: 'Fire' },
+    { name: '정', hanja: '丁', element: '화(火)', elementEn: 'Fire' },
+    { name: '무', hanja: '戊', element: '토(土)', elementEn: 'Earth' },
+    { name: '기', hanja: '己', element: '토(土)', elementEn: 'Earth' },
+    { name: '경', hanja: '庚', element: '금(金)', elementEn: 'Metal' },
+    { name: '신', hanja: '辛', element: '금(金)', elementEn: 'Metal' },
+    { name: '임', hanja: '壬', element: '수(水)', elementEn: 'Water' },
+    { name: '계', hanja: '癸', element: '수(水)', elementEn: 'Water' }
+];
+
+// 지지 (12개)
+const earthlyBranches = [
+    { name: '자', hanja: '子', animal: '쥐', animalEn: 'Rat' },
+    { name: '축', hanja: '丑', animal: '소', animalEn: 'Ox' },
+    { name: '인', hanja: '寅', animal: '호랑이', animalEn: 'Tiger' },
+    { name: '묘', hanja: '卯', animal: '토끼', animalEn: 'Rabbit' },
+    { name: '진', hanja: '辰', animal: '용', animalEn: 'Dragon' },
+    { name: '사', hanja: '巳', animal: '뱀', animalEn: 'Snake' },
+    { name: '오', hanja: '午', animal: '말', animalEn: 'Horse' },
+    { name: '미', hanja: '未', animal: '양', animalEn: 'Goat' },
+    { name: '신', hanja: '申', animal: '원숭이', animalEn: 'Monkey' },
+    { name: '유', hanja: '酉', animal: '닭', animalEn: 'Rooster' },
+    { name: '술', hanja: '戌', animal: '개', animalEn: 'Dog' },
+    { name: '해', hanja: '亥', animal: '돼지', animalEn: 'Pig' }
+];
+
+// 60갑자 계산 함수
+function getSixtyYearCycle(year) {
+    let stemIndex = (year - 4) % 10;
+    if (stemIndex < 0) stemIndex += 10;
+    
+    let branchIndex = (year - 4) % 12;
+    if (branchIndex < 0) branchIndex += 12;
+    
+    return {
+        stem: heavenlyStems[stemIndex],
+        branch: earthlyBranches[branchIndex],
+        stemIndex: stemIndex,
+        branchIndex: branchIndex
+    };
+}
+
+// 음력 설날 추정
+function estimateLunarNewYear(year) {
+    if (lunarNewYears[year]) {
+        return lunarNewYears[year];
+    }
+    return 205;
+}
+
 
     function initDateSelect() {
-        const yearSelect = document.getElementById('bYear');
-        const daySelect = document.getElementById('bDay');
-        for (let y = 2025; y >= 1950; y--) {
-            yearSelect.add(new Option(`${y}년`, y));
-        }
-        for (let d = 1; d <= 31; d++) {
-            daySelect.add(new Option(`${d}일`, d));
-        }
+    const yearSelect = document.getElementById('bYear');
+    const daySelect = document.getElementById('bDay');
+    
+    // 기원전 100년 ~ 2100년까지
+    for (let y = 2100; y >= -100; y--) {
+        if (y === 0) continue;
+        const label = y > 0 ? `${y}년` : `BC ${Math.abs(y)}년`;
+        yearSelect.add(new Option(label, y));
     }
+    
+    for (let d = 1; d <= 31; d++) {
+        daySelect.add(new Option(`${d}일`, d));
+    }
+}
+
 
     function calculateZodiac() {
-        const year = parseInt(document.getElementById('bYear').value);
-        const month = parseInt(document.getElementById('bMonth').value);
-        const day = parseInt(document.getElementById('bDay').value);
+    const year = parseInt(document.getElementById('bYear').value);
+    const month = parseInt(document.getElementById('bMonth').value);
+    const day = parseInt(document.getElementById('bDay').value);
 
-        if (!year || !month || !day) {
-            document.getElementById('searchResult').innerText = '⚠️ 생년월일을 모두 선택해 주세요.';
-            return;
-        }
+    if (!year || !month || !day) {
+        document.getElementById('searchResult').innerText = '⚠️ 생년월일을 모두 선택해 주세요.';
+        return;
+    }
 
-        const inputDate = month * 100 + day;
-        const lunarDate = lunarNewYears[year];
-        let zodiacYear = year;
-        if (inputDate < lunarDate) {
-            zodiacYear = year - 1;
-        }
+    const inputDate = month * 100 + day;
+    const lunarDate = estimateLunarNewYear(year);
+    
+    let zodiacYear = year;
+    if (inputDate < lunarDate) {
+        zodiacYear = year - 1;
+        if (zodiacYear === 0) zodiacYear = -1;
+    }
 
-        let index = (zodiacYear - 1900) % 12;
-        if (index < 0) index += 12;
-        const zodiacName = zodiacNamesKo[index];
-        const zodiacIcon = zodiacs[index].icon;
-        const zodiacElement = zodiacs[index].element;
+    const cycle = getSixtyYearCycle(zodiacYear);
+    const zodiacIcon = zodiacs[cycle.branchIndex].icon;
+    const yearDisplay = zodiacYear > 0 ? `${zodiacYear}년` : `BC ${Math.abs(zodiacYear)}년`;
+    const sixtyName = `${cycle.stem.hanja}${cycle.branch.hanja}`;
+    const koreanName = `${cycle.stem.name}${cycle.branch.name}`;
 
         document.getElementById('searchResult').innerHTML = `
-            <span style="font-size:2.2rem;display:block;margin-bottom:8px;">${zodiacIcon}</span>
-            <span style="color: var(--text-primary);">입력한 생년월일은</span><br>
-            <strong style="font-size:1.2rem; color: var(--red);">${zodiacName}</strong> 
-            <span style="color: var(--blue); font-size:0.9rem;">(${zodiacElement})</span>
-            <span style="color: var(--text-primary);">입니다.</span>
-        `;
+        <span style="font-size:2.5rem;display:block;margin-bottom:10px;">${zodiacIcon}</span>
+        <span style="color: var(--text-primary);">${yearDisplay}생은</span><br>
+        <strong style="font-size:1.4rem; color: var(--red);">${cycle.branch.animal}띠</strong><br>
+        <div translate="no" style="margin-top:10px; padding:10px; background:rgba(46,107,138,0.1); border-radius:8px;">
+            <span style="font-size:1.1rem; color: var(--blue);">
+                ${sixtyName}년 (${koreanName})
+            </span><br>
+            <span style="font-size:0.9rem; color: var(--text-secondary);">
+                ${cycle.stem.elementEn} ${cycle.branch.animalEn} · ${cycle.stem.element}
+            </span>
+        </div>
+    `;
 
-        setTimeout(() => {
-            closeModal();
-            const items = document.querySelectorAll('#my-grid .zodiac-item');
-            if (items[index]) {
-                items[index].click();
-                document.getElementById('my-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }, 2500);
+
+    // 결과 아래에 "이 띠로 선택하기" 버튼 추가
+    document.getElementById('searchResult').innerHTML += `
+        <button onclick="selectMyZodiac(${cycle.branchIndex})" 
+                style="margin-top:15px; padding:12px 24px; background:var(--gradient-header); 
+                       color:white; border:none; border-radius:25px; font-weight:700; 
+                       cursor:pointer; font-size:0.95rem;">
+            ✓ 이 띠로 선택하기
+        </button>
+    `;
+}
+function selectMyZodiac(branchIndex) {
+    closeModal();
+    const items = document.querySelectorAll('#my-grid .zodiac-item');
+    if (items[branchIndex]) {
+        items[branchIndex].click();
+        document.getElementById('my-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+}
+
 
     // 모달 외부 클릭시 닫기
     document.getElementById('zodiacModal').addEventListener('click', function(e) {
